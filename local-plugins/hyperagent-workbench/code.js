@@ -122,24 +122,27 @@ function threadHeader(parent, x, width, fonts, title) {
   return h;
 }
 function composer(parent, x, y, w, fonts, working) {
-  const c = rect(parent, "Follow-up composer", x, y, w, 166, C.white, 17, C.border);
+  const h = working ? 211 : 166;
+  const c = rect(parent, "Follow-up composer", x, y, w, h, C.white, 17, C.border);
   if (working) {
     text(c, "Working status", "···  Working...", 18, 12, 160, 18, 11, C.muted, fonts.regular);
     button(c, "Stop execution", "■  Stop", w - 83, 7, 65, 27, C.white, C.text, fonts.medium, null);
     line(c, "Composer status divider", 0, 39, w, C.border);
   }
   text(c, "Composer placeholder", "Add a follow-up...", 18, working ? 55 : 20, w - 40, 24, 13, C.muted, fonts.regular);
-  ellipse(c, "Composer add button", 18, 102, 42, 42, C.white, C.border);
-  text(c, "Composer add icon", "+", 18, 110, 42, 24, 21, C.muted, fonts.regular, "CENTER");
-  ellipse(c, "Composer options button", 72, 102, 42, 42, C.white, C.border);
-  text(c, "Composer options icon", "☷", 72, 111, 42, 22, 16, C.muted, fonts.regular, "CENTER");
-  text(c, "Execute icon", "ϟ", w - 142, 113, 18, 20, 17, C.text, fonts.medium, "CENTER");
-  button(c, "Approval lock", "♙", w - 98, 102, 42, 42, C.white, C.muted, fonts.regular, C.border);
-  ellipse(c, "Send message button", w - 50, 102, 42, 42, "#9AA7B8", null);
-  text(c, "Send message arrow", "↑", w - 50, 108, 42, 27, 22, C.white, fonts.medium, "CENTER");
-  rect(c, "Integration footer", 0, 148, w, 18, C.pale, 0, null);
-  text(c, "Integration icons", "▰  ✉  ✣", 15, 148, 56, 17, 10, C.text, fonts.medium);
-  text(c, "Connect integrations", "Connect your integrations  →", 74, 149, 210, 16, 10, C.muted, fonts.regular);
+  const controlsY = working ? 126 : 102;
+  ellipse(c, "Composer add button", 18, controlsY, 42, 42, C.white, C.border);
+  text(c, "Composer add icon", "+", 18, controlsY + 8, 42, 24, 21, C.muted, fonts.regular, "CENTER");
+  ellipse(c, "Composer options button", 72, controlsY, 42, 42, C.white, C.border);
+  text(c, "Composer options icon", "☷", 72, controlsY + 9, 42, 22, 16, C.muted, fonts.regular, "CENTER");
+  text(c, "Execute icon", "ϟ", w - 142, controlsY + 11, 18, 20, 17, C.text, fonts.medium, "CENTER");
+  button(c, "Approval lock", "♙", w - 98, controlsY, 42, 42, C.white, C.muted, fonts.regular, C.border);
+  ellipse(c, "Send message button", w - 50, controlsY, 42, 42, "#9AA7B8", null);
+  text(c, "Send message arrow", "↑", w - 50, controlsY + 6, 42, 27, 22, C.white, fonts.medium, "CENTER");
+  const footerY = working ? 192 : 148;
+  rect(c, "Integration footer", 0, footerY, w, h - footerY, C.pale, 0, null);
+  text(c, "Integration icons", "▰  ✉  ✣", 15, footerY, 56, h - footerY, 10, C.text, fonts.medium);
+  text(c, "Connect integrations", "Connect your integrations  →", 74, footerY + 1, 210, h - footerY - 1, 10, C.muted, fonts.regular);
   return c;
 }
 function toolRow(parent, name, value, y, w, fonts, detail) {
